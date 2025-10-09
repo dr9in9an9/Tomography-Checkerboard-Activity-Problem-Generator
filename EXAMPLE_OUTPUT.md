@@ -11,7 +11,7 @@ python3 tomography.py
 ## What It Does
 
 The script:
-1. Generates a random 5x5 mineboard with 5 crosses (mines) placed randomly
+1. Generates a random 5x5 mineboard with 5 mines placed randomly
 2. Calculates an xrayboard where each cell shows the count of mines visible from that position (through row, column, and diagonal lines)
 3. Prints both boards
 
