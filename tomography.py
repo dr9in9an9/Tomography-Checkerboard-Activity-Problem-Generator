@@ -1,7 +1,8 @@
 # author: Jesus Sisniega-Serrano
-# version: 10-8-2025
+# version: 10-9-2025
+# NO AI USED IN THE PROCESS OF CREATION. >:(
 
-# scroll to very bottom to use.
+# scroll to very bottom to use.  
 
 import random
 
@@ -24,7 +25,7 @@ def mineboardGen(size, crossNum):
     for i in range(size):
         mineboard[i] = [0]*size
 
-    # sets x number of crosses.
+    # sets x number of mines.
     for i in range(crossNum):
         spotR = random.randint(0, size-1)
         spotC = random.randint(0, size-1)
@@ -97,17 +98,7 @@ def xraySpot(spotR, spotC):
 
     return count
     
-# simple array printer.
-def arrPrint(arr):
-    size = len(arr)
-
-    for i in range(size):
-        for j in range(size):
-            print(arr[i][j], end=" ")
-        print(" ")
-    print(" ")
-
-# generates an xrayboard from the mineboard.
+# generates an xray of the mineboard.
 def xrayboardGen():
     global mineboard
     global xrayboard
@@ -118,22 +109,36 @@ def xrayboardGen():
     for i in range(boardsize):
         xrayboard[i] = [0]*boardsize
 
+    # runs xraySpot for each position on mineboard.
     for i in range(boardsize):
         for j in range(boardsize):
             if debug: print(i, end=" ")
             if debug: print(j)
             xrayboard[i][j] = xraySpot(i, j)
 
+# simple array printer.
+def arrPrint(arr):
+    size = len(arr)
+
+    for i in range(size):
+        for j in range(size):
+            print(arr[i][j], end=" ")
+        print(" ")
+    print(" ")
+
 # only edit below this line.
-############################################################################################################
+##################################################################################################
 
-mineboardGen(5,5) # set size of square board, set number of crosses to populate board with.
+mineboardGen(5,3) # set size of square board, set number of mines to populate the mineboard with.
 
-# below, remove the hastag and change the 1s and 0s to desired board if you want to test a certain board.
+# or, below, remove the hastag to test a certain arrangement of 1s and 0s in a 5x5 board.
 #mineboard = [[0, 0, 0, 0, 0], [0, 1, 0, 0, 0], [0, 0, 0, 1, 0], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0]]
 
-############################################################################################################
+##################################################################################################
 # DON'T TOUCH BELOW THIS LINE.
+
 xrayboardGen()
+print('\n"Mine Field"')
 arrPrint(mineboard)
+print('\n"X-RAY Map"')
 arrPrint(xrayboard)
