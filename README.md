@@ -5,5 +5,8 @@ NOW FEATURING: 3D visualization!
 
 COMING SOON?: 3D Tomography problem generator... maybe.
 
-Special thanks: GitHub User *UmairrTariq*
+.
+
+Special thanks: *GitHub User* **UmairrTariq**
+
 https://github.com/UmairrTariq/UmairrTariq/blob/main/3D-Cube.py
