@@ -1,3 +1,10 @@
+# author: Jesus Sisniega-Serrano
+# version: 12-11-2025
+# NO AI USED IN THE PROCESS OF CREATION. >:(
+# 
+# THANK U FOR CHECKING OUT MY WORK!
+####################
+
 # public libraries #
 import numpy
 import time
