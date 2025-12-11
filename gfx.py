@@ -46,19 +46,29 @@ windowSize = 800
 window = pygame.display.set_mode((windowSize, windowSize))
         
 # Draws a line of any color. 
-def connect_points(i, j, points, isRed):
+def connect_points(i, j, points, colorName):
     global window
 
-    color = (255,255,255) # White color vector.
-    if isRed == True:
-        color = (255, 0, 0) # Red color vector.
+    color = (255,255,255) #      White color vector.
+    if colorName == "red":
+        color = (255, 0, 0) #.     Red color vector.
+    if colorName == "orange":
+        color = (255, 165, 0) # Orange color vector.
+    if colorName == "yellow":
+        color = (255, 255, 0) # Yellow color vector.
+    if colorName == "green":
+        color = (0, 255, 0) #.   Green color vector.
+    if colorName == "blue":
+        color = (0, 0, 255) #     Blue color vector.
+    if colorName == "purple":
+        color = (191, 0, 255) # Purple color vector.
 
     pygame.draw.line(window, color, (points[i][0],points[i][1]), (points[j][0],points[j][1]))
         
 
 # Where all the magic happens.
 # Insert a 3D matrix of any size and watch as your computer renders sh*tty graphics! Not sure why I decided to do this...
-def visualizeMatrix(xyzmatrix):
+def visualizeMatrix(xyzmatrix, xrayORmine):
     global windowSize
     global window
 
@@ -148,7 +158,26 @@ def visualizeMatrix(xyzmatrix):
                     cube_points = cubesLine[r]
                     points = [0 for _ in range(len(cube_points))]
                     i = 0
-                    isRed = False
+
+                    # Color features.
+                    colorN = ""
+                    val = xyzmatrix[f][c][r]
+                    if xrayORmine == "xray":
+                        if val > 5:
+                            colorN = "blue"
+                        if val == 5:
+                            colorN = "purple"
+                        if val == 4:
+                            colorN = "red"
+                        if val == 3:
+                            colorN = "orange"
+                        if val == 2:
+                            colorN = "yellow"
+                        if val == 1:
+                            colorN = "green"
+                    elif xrayORmine == "mine":
+                        if val != 0:
+                            colorN = "red"
 
                     # print(cube_points) # debug
 
@@ -167,21 +196,21 @@ def visualizeMatrix(xyzmatrix):
                         points[i] = (localX, localY)
                         
                         i += 1
-                        pygame.draw.circle(window,(100,100,100),(x,y),3)
+                        pygame.draw.circle(window, (255,105,180), (localX,localY), 3)
                         
                     # PyGame's built-in vector simulation.
-                    connect_points(0, 1, points, isRed)
-                    connect_points(0, 3, points, isRed)
-                    connect_points(0, 4, points, isRed)
-                    connect_points(1, 2, points, isRed)
-                    connect_points(1, 5, points, isRed)
-                    connect_points(2, 6, points, isRed)
-                    connect_points(2, 3, points, isRed)
-                    connect_points(3, 7, points, isRed)
-                    connect_points(4, 5, points, isRed)
-                    connect_points(4, 7, points, isRed)
-                    connect_points(6, 5, points, isRed)
-                    connect_points(6, 7, points, isRed)
+                    connect_points(0, 1, points, colorN)
+                    connect_points(0, 3, points, colorN)
+                    connect_points(0, 4, points, colorN)
+                    connect_points(1, 2, points, colorN)
+                    connect_points(1, 5, points, colorN)
+                    connect_points(2, 6, points, colorN)
+                    connect_points(2, 3, points, colorN)
+                    connect_points(3, 7, points, colorN)
+                    connect_points(4, 5, points, colorN)
+                    connect_points(4, 7, points, colorN)
+                    connect_points(6, 5, points, colorN)
+                    connect_points(6, 7, points, colorN)
         
         # PyGame's keyboard input reader.
         for event in pygame.event.get():
