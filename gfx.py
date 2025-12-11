@@ -43,38 +43,46 @@ def multiply_m(a,b):
 
 # Defines window object.
 windowSize = 800
-rotSpeed = 0.02
 window = pygame.display.set_mode((windowSize, windowSize))
-
-# Necessary to run real-time graphics.
-clock = pygame.time.Clock()
-
-# Identity matrix for a 2D span. 
-projection_matrix = [[1, 0, 0]
-                    ,[0, 1, 0]
-                    ,[0, 0, 0]]
         
 # Draws a line of any color. 
 def connect_points(i, j, points, isRed):
+    global window
+
     color = (255,255,255) # White color vector.
     if isRed == True:
         color = (255, 0, 0) # Red color vector.
 
     pygame.draw.line(window, color, (points[i][0],points[i][1]), (points[j][0],points[j][1]))
         
-scale = 20 # Individual cube scale.
-# Future script modifications may include zoom functions!
-
-aX = aY = aZ = 0 # Starting angle(s) degrees. x, y, z respectively.
 
 # Where all the magic happens.
 # Insert a 3D matrix of any size and watch as your computer renders sh*tty graphics! Not sure why I decided to do this...
 def visualizeMatrix(xyzmatrix):
-    z = len(xyzmatrix)
-    y = len(xyzmatrix[z])
-    x = len(xyzmatrix[z][y])
+    global windowSize
+    global window
 
-    # Creates the invitual points for each cube.
+    # Necessary to run real-time graphics.
+    clock = pygame.time.Clock()
+
+    scale = 20 # Individual cube scale.
+    # Future script modifications may include zoom functions!
+
+    aX = aY = aZ = 0 # Starting angle(s) degrees. x, y, z respectively.
+
+    # Identity matrix for a 2D span. 
+    projection_matrix = [[1, 0, 0]
+                        ,[0, 1, 0]
+                        ,[0, 0, 0]]
+
+    # 3D Matrix dimensions.
+    z = len(xyzmatrix)
+    y = len(xyzmatrix[0])
+    x = len(xyzmatrix[0][0])
+
+    rotSpeed = 0.02
+
+    ##############################Creates individual edges for each cube.##############################
 
     # Generates height.
     cubesCUBED = [n for n in range(z)]
@@ -104,6 +112,9 @@ def visualizeMatrix(xyzmatrix):
             cubesGrid[c] = cubesLine
 
         cubesCUBED[f] = cubesGrid
+    
+    # 8 edges per cube... YOU do the math.
+    ####################################################################################################
 
     # PyGame main loop.
     # Allows a real-time interactable application to occur.
@@ -117,7 +128,7 @@ def visualizeMatrix(xyzmatrix):
                ,[       0,  sin(aX),  cos(aX)]]
 
         rotY = [[ cos(aY),        0,  sin(aY)]
-               ,[       1,        0,        0]
+               ,[       0,        1,        0]
                ,[-sin(aY),        0,  cos(aY)]]
 
         rotZ = [[ cos(aZ), -sin(aZ),        0]
@@ -137,6 +148,7 @@ def visualizeMatrix(xyzmatrix):
                     cube_points = cubesLine[r]
                     points = [0 for _ in range(len(cube_points))]
                     i = 0
+                    isRed = False
 
                     # print(cube_points) # debug
 
@@ -158,18 +170,18 @@ def visualizeMatrix(xyzmatrix):
                         pygame.draw.circle(window,(100,100,100),(x,y),3)
                         
                     # PyGame's built-in vector simulation.
-                    connect_points(0, 1, points)
-                    connect_points(0, 3, points)
-                    connect_points(0, 4, points)
-                    connect_points(1, 2, points)
-                    connect_points(1, 5, points)
-                    connect_points(2, 6, points)
-                    connect_points(2, 3, points)
-                    connect_points(3, 7, points)
-                    connect_points(4, 5, points)
-                    connect_points(4, 7, points)
-                    connect_points(6, 5, points)
-                    connect_points(6, 7, points)
+                    connect_points(0, 1, points, isRed)
+                    connect_points(0, 3, points, isRed)
+                    connect_points(0, 4, points, isRed)
+                    connect_points(1, 2, points, isRed)
+                    connect_points(1, 5, points, isRed)
+                    connect_points(2, 6, points, isRed)
+                    connect_points(2, 3, points, isRed)
+                    connect_points(3, 7, points, isRed)
+                    connect_points(4, 5, points, isRed)
+                    connect_points(4, 7, points, isRed)
+                    connect_points(6, 5, points, isRed)
+                    connect_points(6, 7, points, isRed)
         
         # PyGame's keyboard input reader.
         for event in pygame.event.get():
@@ -178,7 +190,7 @@ def visualizeMatrix(xyzmatrix):
                 sys.exit()
             keys = pygame.key.get_pressed()
             if keys[pygame.K_r]:
-                aX=aY=aZ=0
+                aX = aY = aZ = 0
             if keys[pygame.K_a]:
                 aY += rotSpeed
             if keys[pygame.K_d]:
