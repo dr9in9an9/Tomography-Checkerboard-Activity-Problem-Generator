@@ -1,5 +1,5 @@
 # author: Jesus Sisniega-Serrano
-# version: 12-10-2025
+# version: 12-11-2025
 # NO AI USED IN THE PROCESS OF CREATION. >:(
 
 # scroll to very bottom to use.  
