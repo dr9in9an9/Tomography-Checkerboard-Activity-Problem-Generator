@@ -1,5 +1,5 @@
 # author: Jesus Sisniega-Serrano
-# version: 10-9-2025
+# version: 12-10-2025
 # NO AI USED IN THE PROCESS OF CREATION. >:(
 
 # scroll to very bottom to use.  
@@ -126,19 +126,40 @@ def arrPrint(arr):
         print(" ")
     print(" ")
 
+def demo(size, mines):
+    mineboardGen(size, mines)
+    xrayboardGen()
+    print('\n"Mine Field"')
+    arrPrint(mineboard)
+    print('\n"X-RAY Map"')
+    arrPrint(xrayboard)
+
+def demo2():
+    global xrayboard
+    xrayboardGen()
+    print('\n"Mine Field"')
+    arrPrint(mineboard)
+    print('\n"X-RAY Map"')
+    arrPrint(xrayboard)
+
+def returnBoards(size, mines):
+    global mineboard
+    global xrayboard
+
+    mineboardGen(size, mines)
+    xrayboardGen()
+    return[mineboard, xrayboard]
+
+
 # only edit below this line.
 ##################################################################################################
 
-mineboardGen(5,3) # set size of square board, set number of mines to populate the mineboard with.
+#demo(5, 3) # set size of square board, set number of mines to populate the mineboard with.
+#! remove the hashtag above to test a random board.
 
-# or, below, remove the hastag to test a certain arrangement of 1s and 0s in a 5x5 board.
+#! or, below, remove the hastags to test a certain arrangement of 1s and 0s in a 5x5 board.
 #mineboard = [[0, 0, 0, 0, 0], [0, 1, 0, 0, 0], [0, 0, 0, 1, 0], [0, 0, 0, 0, 0], [0, 0, 1, 0, 0]]
+#demo2()
 
-##################################################################################################
-# DON'T TOUCH BELOW THIS LINE.
-
-xrayboardGen()
-print('\n"Mine Field"')
-arrPrint(mineboard)
-print('\n"X-RAY Map"')
-arrPrint(xrayboard)
+#!!!!!!!! For some weird reason demo2() is broken.
+# This is a pre-existing issue from last build.
