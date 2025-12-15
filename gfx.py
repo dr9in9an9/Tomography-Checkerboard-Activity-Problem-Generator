@@ -1,7 +1,8 @@
 # author: Jesus Sisniega-Serrano
 # version: 12-11-2025
 # NO AI USED IN THE PROCESS OF CREATION. >:(
-# Based on Umaur Tariq's 3D Cube Visualization Script: https://www.youtube.com/watch?v=Y3ee6z3Lz88
+# Based on Umair Tariq's 3D Cube Visualization Script: https://www.youtube.com/watch?v=Y3ee6z3Lz88
+##################################################################################################
 
 import pygame # Python graphics library
 from math import * # Math functions library
@@ -188,7 +189,7 @@ def visualizeMatrix(xyzmatrix, xrayORmine):
                         rotate_z = multiply_m(rotZ,rotate_y)
                         point_2d = multiply_m(projection_matrix,rotate_z)
                         
-                        #print(point_2d) # debug
+                        # print(point_2d) # debug
 
                         localX = (point_2d[0][0] * scale) + windowSize/2
                         localY = (point_2d[1][0] * scale) + windowSize/2
@@ -218,6 +219,8 @@ def visualizeMatrix(xyzmatrix, xrayORmine):
                 pygame.quit()
                 sys.exit()
             keys = pygame.key.get_pressed()
+            if keys[pygame.K_n]:
+                pygame.quit()
             if keys[pygame.K_r]:
                 aX = aY = aZ = 0
             if keys[pygame.K_a]:
