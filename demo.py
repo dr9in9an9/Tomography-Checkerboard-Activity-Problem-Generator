@@ -1,5 +1,5 @@
 # author: Jesus Sisniega-Serrano
-# version: 12-11-2025
+# version: 12-15-2025
 # NO AI USED IN THE PROCESS OF CREATION. >:(
 # 
 # THANK U FOR CHECKING OUT MY WORK!
@@ -19,14 +19,16 @@ import gfx
 tomography2D.demo(5, 3)
 
 # demo 2: Understanding the cube
-# gfx.visualizeMatrix([[[]]], "")
+# gfx.visualizeMatrix([[[0]]], "")
 
-# demo 3: 2D arrays visualized in 3D
+# demo 3 part a: 2D arrays visualized in 3D, XRAYS
 # temp = tomography2D.returnBoards(5, 3)
-# xray = temp[1]
+# xray = [temp[1]]
+# print(temp[0])
 # gfx.visualizeMatrix(xray, "xray")
-# time.sleep(60)
-# mine = temp[0]
+##################################################
+# demo 3 part b: 2D arrays visualized in 3D, MINES
+# mine = [] # paste print inside here.
 # gfx.visualizeMatrix(mine, "mine")
 
 # demo 4: A 3D tomography solution
